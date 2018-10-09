@@ -67,26 +67,35 @@
   size_t tx_bytes = ifmib.ifmd_data.ifi_obytes - ifdata.ifi_obytes;
 
   humanize_digit(tx_bytes, &string);
-  // NSLog(@"%@", [NSString stringWithFormat:@"⇡ %.3Lf%s\n", string.number,
-  // string.suffix]);
 
-  NSFont *font             = [NSFont fontWithName:@"Lucida Grande" size:9];
-  NSDictionary *attributes = [[NSDictionary alloc]
-      initWithObjectsAndKeys:font, NSFontAttributeName, nil];
-
+  //update by liu,2018.10.9
+  NSFont *boldFont = [NSFont boldSystemFontOfSize:9];
+  NSColor *textColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:1.0f];
+  NSMutableParagraphStyle *textParagraph = [[NSMutableParagraphStyle alloc] init];
+  [textParagraph setMaximumLineHeight:20]; //整体布局s
+  [textParagraph setParagraphSpacing:-6 ];  //行距
+  [textParagraph setLineSpacing:3]; //必须设置>1,否则自适，不符合需求
+  NSDictionary *attributes= [NSDictionary dictionaryWithObjectsAndKeys:
+                               boldFont, NSFontAttributeName,
+                               textColor, NSForegroundColorAttributeName,
+                               textParagraph, NSParagraphStyleAttributeName,
+                               @(-10),NSBaselineOffsetAttributeName,
+                               nil];
+    
+ 
   [speedString setAttributedString: [[NSAttributedString alloc]
-              initWithString:[NSString stringWithFormat:@"⇡%.1Lf%s\n",
-                                                        string.number,
-                                                        string.suffix]
-                  attributes:attributes]];
-
+                                       initWithString:[NSString stringWithFormat:@"↑%4.1Lf%s\n",
+                                                       string.number,
+                                                       string.suffix]
+                                       attributes:attributes]];
+    
   humanize_digit(rx_bytes, &string);
   [speedString appendAttributedString: [[NSAttributedString alloc]
-			   initWithString:[NSString stringWithFormat:@"⇣%.1Lf%s",
-														 string.number,
-														 string.suffix]
-                           attributes:attributes]];
-
+                                          initWithString:[NSString stringWithFormat:@"↓%4.1Lf%s",
+                                                          string.number,
+                                                          string.suffix]
+                                          attributes:attributes]];
+    
   [statusItem setAttributedTitle:speedString];
 
   ifdata = ifmib.ifmd_data;

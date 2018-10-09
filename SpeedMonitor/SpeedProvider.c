@@ -83,23 +83,24 @@ void fill_interface_data(struct ifmibdata *ifmib) {
 	}
 	close(fd);
 }
-
+//update by liu 2018.10.9
 static const char *suffixes[] = {
-	"bytes",
-	"KiB",
-	"MiB",
-	"GiB",
-	"TiB",
-	"PiB",
-	"EiB",
-	"ZiB",
-	"YiB"
+	"b/s",
+	"K/s",
+	"M/s",
+	"G/s",
+	"T/s",
+	"P/s",
+	"E/s",
+	"Z/s",
+	"Y/s"
 };
 
 void humanize_digit(long double number, struct human_readble_string *string) {
 	unsigned int base = 1024;
-	unsigned int max = 9999; // 4 digits at most
-	unsigned int count;
+	//unsigned int max = 9999; // 4 digits at most
+    unsigned int max = 1024; // 4 digits at most
+    unsigned int count;
 
 	for (count = 0; number > max; count++)
 		number /= base;
