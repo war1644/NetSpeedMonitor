@@ -66,7 +66,6 @@
   size_t rx_bytes = ifmib.ifmd_data.ifi_ibytes - ifdata.ifi_ibytes;
   size_t tx_bytes = ifmib.ifmd_data.ifi_obytes - ifdata.ifi_obytes;
 
-  humanize_digit(tx_bytes, &string);
 
   //update by liu,2018.10.9
   NSFont *boldFont = [NSFont boldSystemFontOfSize:9];
@@ -81,19 +80,39 @@
                                textParagraph, NSParagraphStyleAttributeName,
                                @(-10),NSBaselineOffsetAttributeName,
                                nil];
-    
- 
+  static const char *blocks[] = {
+        "   ",
+        "  ",
+        " ",
+        "",
+        "",
+        "",
+        ""
+  };
+  humanize_digit(tx_bytes, &string);
+
+    //compute width
+    int len=0;
+    long long tmp=string.number;
+    for(;tmp>0;len++)tmp/=10;
+
   [speedString setAttributedString: [[NSAttributedString alloc]
-                                       initWithString:[NSString stringWithFormat:@"↑%4.1Lf%s\n",
+                                       initWithString:[NSString stringWithFormat:@"↑%4.1Lf%s%s\n",
                                                        string.number,
-                                                       string.suffix]
+                                                       string.suffix,
+                                                       blocks[len]]   //占位，防止左右跳动，字符串占位符，没找到合适的
                                        attributes:attributes]];
     
   humanize_digit(rx_bytes, &string);
+    //compute width
+    len=0;
+    tmp=string.number;
+    for(;tmp>0;len++)tmp/=10;
   [speedString appendAttributedString: [[NSAttributedString alloc]
                                           initWithString:[NSString stringWithFormat:@"↓%4.1Lf%s",
                                                           string.number,
-                                                          string.suffix]
+                                                          string.suffix,
+                                                          blocks[len]]   //占位，防止左右跳动，字符串占位符，没找到合适的
                                           attributes:attributes]];
     
   [statusItem setAttributedTitle:speedString];

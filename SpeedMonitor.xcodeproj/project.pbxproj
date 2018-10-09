@@ -15,6 +15,7 @@
 		42A5BF2A1CA27204003FF0E1 /* SpeedMonitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A5BF291CA27204003FF0E1 /* SpeedMonitorTests.m */; };
 		42A5BF351CA27204003FF0E1 /* SpeedMonitorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A5BF341CA27204003FF0E1 /* SpeedMonitorUITests.m */; };
 		42B8661A1CA2A0EB003BA63A /* SpeedProvider.c in Sources */ = {isa = PBXBuildFile; fileRef = 42B866181CA2A0EB003BA63A /* SpeedProvider.c */; };
+		5A0C34BC216CC524002C5CCE /* speed.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5A0C34BB216CC524002C5CCE /* speed.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		42A5BF361CA27204003FF0E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42B866181CA2A0EB003BA63A /* SpeedProvider.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SpeedProvider.c; sourceTree = "<group>"; };
 		42B866191CA2A0EB003BA63A /* SpeedProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeedProvider.h; sourceTree = "<group>"; };
+		5A0C34BB216CC524002C5CCE /* speed.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = speed.icns; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				42A5BF181CA27204003FF0E1 /* ViewController.h */,
 				42A5BF191CA27204003FF0E1 /* ViewController.m */,
 				42B866181CA2A0EB003BA63A /* SpeedProvider.c */,
+				5A0C34BB216CC524002C5CCE /* speed.icns */,
 				42B866191CA2A0EB003BA63A /* SpeedProvider.h */,
 				42A5BF1B1CA27204003FF0E1 /* Assets.xcassets */,
 				42A5BF1D1CA27204003FF0E1 /* Main.storyboard */,
@@ -247,6 +250,7 @@
 			files = (
 				42A5BF1C1CA27204003FF0E1 /* Assets.xcassets in Resources */,
 				42A5BF1F1CA27204003FF0E1 /* Main.storyboard in Resources */,
+				5A0C34BC216CC524002C5CCE /* speed.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
