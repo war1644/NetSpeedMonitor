@@ -13,4 +13,4 @@
 
 - INSTALL
 	
-	[see Release](./Release/SpeedMonitor.app)
+	[see Release](./Release)
