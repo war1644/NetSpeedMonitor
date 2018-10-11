@@ -14,7 +14,8 @@
 		- 箭头不会再左右跳动，不会再影响其他应用的位置
 		- 自适应黑色主题
 
-	![v1.0](v1.0.png?raw=true)
+	![v1.0](https://github.com/scylhy/NetSpeedMonitor/blob/master/v1.0.white.png)
+	![v1.0](https://github.com/scylhy/NetSpeedMonitor/blob/master/v1.0.black.png)
 
 - TODO
 	- ui代码需要重写以适应xcode10.0
@@ -27,7 +28,8 @@
 	- 重新构建
 
 - INSTALL
-	- 直接下载编译好的程序[see Release](./Release) 或用xcode重新编译源码
+	- 直接下载编译好的程序[see Release](https://github.com/scylhy/NetSpeedMonitor/releases/tag/v1.0) 或用xcode重新编译源码
+
 	- 设置开机启动
 
 
