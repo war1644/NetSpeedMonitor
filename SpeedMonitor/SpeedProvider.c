@@ -85,7 +85,7 @@ void fill_interface_data(struct ifmibdata *ifmib) {
 }
 //update by liu 2018.10.9
 static const char *suffixes[] = {
-	"b/s",
+	"B/s",
 	"K/s",
 	"M/s",
 	"G/s",

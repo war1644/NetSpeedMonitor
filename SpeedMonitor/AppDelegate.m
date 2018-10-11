@@ -43,15 +43,17 @@
 - (void)createStatusItem {
   statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
   statusMenu = [[NSMenu alloc] init];
-  speedString = [[NSMutableAttributedString alloc] initWithString: @""];
+   
   quit       = [[NSMenuItem alloc] initWithTitle:@"quit"
 										  action:@selector(terminate:)
 								   keyEquivalent:@"q"];
 
-  [statusItem setAttributedTitle:speedString];
+  //[statusItem setAttributedTitle:speedString];
   [statusItem setEnabled:NO];
   [statusItem setMenu:statusMenu];
   [statusMenu insertItem:quit atIndex:0];
+
+    
 
   [self updateStatusItem];
 }
@@ -65,58 +67,43 @@
   fill_interface_data(&ifmib);
   size_t rx_bytes = ifmib.ifmd_data.ifi_ibytes - ifdata.ifi_ibytes;
   size_t tx_bytes = ifmib.ifmd_data.ifi_obytes - ifdata.ifi_obytes;
-
-
+    
   //update by liu,2018.10.9
-  NSFont *boldFont = [NSFont boldSystemFontOfSize:9];
-  NSColor *textColor = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:1.0f];
-  NSMutableParagraphStyle *textParagraph = [[NSMutableParagraphStyle alloc] init];
-  [textParagraph setMaximumLineHeight:20]; //整体布局s
-  [textParagraph setParagraphSpacing:-6 ];  //行距
-  [textParagraph setLineSpacing:3]; //必须设置>1,否则自适，不符合需求
-  NSDictionary *attributes= [NSDictionary dictionaryWithObjectsAndKeys:
-                               boldFont, NSFontAttributeName,
-                               textColor, NSForegroundColorAttributeName,
-                               textParagraph, NSParagraphStyleAttributeName,
-                               @(-10),NSBaselineOffsetAttributeName,
-                               nil];
-  static const char *blocks[] = {
-        "   ",
-        "  ",
-        " ",
-        "",
-        "",
-        "",
-        ""
-  };
-  humanize_digit(tx_bytes, &string);
-
-    //compute width
-    int len=0;
-    long long tmp=string.number;
-    for(;tmp>0;len++)tmp/=10;
-
-  [speedString setAttributedString: [[NSAttributedString alloc]
-                                       initWithString:[NSString stringWithFormat:@"↑%4.1Lf%s%s\n",
-                                                       string.number,
-                                                       string.suffix,
-                                                       blocks[len]]   //占位，防止左右跳动，字符串占位符，没找到合适的
-                                       attributes:attributes]];
+    //NSLog( @"Here is a test message upd: '%d'",tmp );
+    //NSRect NSMakeRect(CGFloat x, CGFloat y, CGFloat w, CGFloat h);
+    NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 60, 40)];
+    [view setWantsLayer:YES];
+    [statusItem setView:view];
     
-  humanize_digit(rx_bytes, &string);
-    //compute width
-    len=0;
-    tmp=string.number;
-    for(;tmp>0;len++)tmp/=10;
-  [speedString appendAttributedString: [[NSAttributedString alloc]
-                                          initWithString:[NSString stringWithFormat:@"↓%4.1Lf%s",
-                                                          string.number,
-                                                          string.suffix,
-                                                          blocks[len]]   //占位，防止左右跳动，字符串占位符，没找到合适的
-                                          attributes:attributes]];
-    
-  [statusItem setAttributedTitle:speedString];
+    //CGRect CGRectMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height);
+    NSTextField *textUp =  [[NSTextField alloc] initWithFrame:CGRectMake(0, 10, 60, 11)];
 
+    [textUp setFont:[NSFont boldSystemFontOfSize:9]];
+    textUp.backgroundColor = [NSColor clearColor];
+    textUp.bordered=false;
+    [view setNeedsDisplay:NO];
+
+    NSTextField *textDown =  [[NSTextField alloc] initWithFrame:CGRectMake(0, 1, 60, 11)];
+    textDown.backgroundColor = [NSColor clearColor];
+    [textDown setFont:[NSFont boldSystemFontOfSize:9]];
+
+    textDown.bordered=false;
+    
+    humanize_digit(tx_bytes, &string);
+    [textUp setStringValue:[NSString stringWithFormat:@"↑ %4.0Lf%s",
+                          string.number,
+                          string.suffix
+                          ]];
+
+    humanize_digit(rx_bytes, &string);
+    [textDown setStringValue:[NSString stringWithFormat:@"↓ %4.0Lf%s",
+                          string.number,
+                          string.suffix
+                          ]];
+    
+    [view addSubview:textUp];
+    [view addSubview:textDown];
+    
   ifdata = ifmib.ifmd_data;
 }
 
