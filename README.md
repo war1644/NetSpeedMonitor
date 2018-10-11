@@ -1,4 +1,3 @@
-![status](status.png?raw=true)
 
 - 更新
 	- v0.2
@@ -7,9 +6,15 @@
 		- 整体居中
 		- 添加图标
 		- 固定title长度，避免左右变动
+
+	![status](status.png?raw=true)
+
 	- v1.0
 		- 放弃原来的富文本方法，更换为自定义view方法
 		- 箭头不会再左右跳动，不会再影响其他应用的位置
+		- 自适应黑色主题
+
+	![v1.0](v1.0.png?raw=true)
 
 - TODO
 	- ui代码需要重写以适应xcode10.0
