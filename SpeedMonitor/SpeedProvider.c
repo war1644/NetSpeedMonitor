@@ -99,7 +99,7 @@ static const char *suffixes[] = {
 void humanize_digit(long double number, struct human_readble_string *string) {
 	unsigned int base = 1024;
 	//unsigned int max = 9999; // 4 digits at most
-    unsigned int max = 1024; // 4 digits at most
+    unsigned int max = 999; // 4 digits at most
     unsigned int count;
 
 	for (count = 0; number > max; count++)
