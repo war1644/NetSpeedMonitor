@@ -1,7 +1,7 @@
 ### NetSpeedMonitor
 
 - INSTALL
-	- 直接下载编译好的程序[see Release](https://github.com/scylhy/NetSpeedMonitor/releases/tag/v1.0) 或用xcode重新编译源码
+	- 直接下载编译好的程序[see Release](https://github.com/longtails/NetSpeedMonitor/releases/tag/v1.3) 或用xcode重新编译源码
 
 	- 设置开机启动
 
