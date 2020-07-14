@@ -75,7 +75,9 @@
     //NSLog( @"Here is a test message upd: '%d'",tmp );
     //Get menuBarHeight,Set Text height=menuBarHeight/2 weight=menuBarHeight*2
     CGFloat h = [[[NSApplication sharedApplication] mainMenu] menuBarHeight];
-    CGFloat w=2*h;
+    CGFloat fs=10;
+    //5个字符长度
+    CGFloat w=45;
     CGFloat th=h/2;
     
     NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, w, h)];
@@ -86,8 +88,7 @@
     CGFloat tx=iw;
     NSTextField *textUp =  [[NSTextField alloc] initWithFrame:CGRectMake(tx, th-1, w, th)];
     NSTextField *textDown =  [[NSTextField alloc] initWithFrame:CGRectMake(tx, 1, w, th)];
-
-    CGFloat fs=8;
+    
     [textUp setFont:[NSFont boldSystemFontOfSize:fs]];
     [textDown setFont:[NSFont boldSystemFontOfSize:fs]];
     //no border

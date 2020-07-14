@@ -83,12 +83,12 @@ void fill_interface_data(struct ifmibdata *ifmib) {
 	}
 	close(fd);
 }
-//update by liu 2018.10.9
+
 static const char *suffixes[] = {
-	"B/s",
-	"K/s",
-	"M/s",
-	"G/s",
+	"B",
+	"K",
+	"M",
+	"G",
 	"T/s",
 	"P/s",
 	"E/s",
@@ -99,7 +99,7 @@ static const char *suffixes[] = {
 void humanize_digit(long double number, struct human_readble_string *string) {
 	unsigned int base = 1024;
 	//unsigned int max = 9999; // 4 digits at most
-    unsigned int max = 999; // 4 digits at most
+    unsigned int max = 999; // 3 digits at most
     unsigned int count;
 
 	for (count = 0; number > max; count++)
